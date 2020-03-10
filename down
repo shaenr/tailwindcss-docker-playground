@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Defaults
+ENVIRONMENT=local
+
+while getopts ":e:" opt; do
+    case $opt in
+        e) # Environment
+            ENVIRONMENT=$OPTARG
+            ;;
+    esac
+done
+
+docker-compose --file ./$ENVIRONMENT/docker-compose.yml down

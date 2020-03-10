@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  tailwind-css:
+    container_name: "tailwind_css_container"
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    # restart: unless-stopped
+    volumes:
+      - "./src:/var/www"
+    # command:
+    # - "npm install -y"
+    # - "live-server /var/www/public --no-browser --port=8181"
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`tailwind-css.dv`)"
+      - "traefik.http.routers.whoami.entrypoints=websecure"
+      - "traefik.http.routers.whoami.tls.domains[0].main=tailwind-css.dv"
+
+networks:
+  web:
+    external: true

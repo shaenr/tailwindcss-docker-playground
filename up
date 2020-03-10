@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Defaults
+BUILD=false
+
+while getopts ":b" opt; do
+    case $opt in
+        b) # Build
+            BUILD=true
+            ;;
+    esac
+done
+
+# Stop all running containers
+docker-compose --file ./docker-compose.yml stop
+
+# Clean up and start containers
+if [ "$BUILD" == true ]
+then
+    docker-compose --file ./docker-compose.yml up -d --build
+else
+    docker-compose --file ./docker-compose.yml up -d
+fi
