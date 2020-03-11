@@ -17,7 +17,10 @@ docker-compose --file ./docker-compose.yml stop
 # Clean up and start containers
 if [ "$BUILD" == true ]
 then
-    docker-compose --file ./docker-compose.yml up -d --build
+    docker-compose --file ./docker-compose.yml up --force-recreate
 else
-    docker-compose --file ./docker-compose.yml up -d
+    docker-compose --file ./docker-compose.yml up
 fi
+
+# docker run -v $(PWD)/src:/var/www -w /var/www node:12.16 npm install -g live-server
+# docker run -v $(PWD)/src:/var/www -w /var/www node:12.16 npm install --no-optional
