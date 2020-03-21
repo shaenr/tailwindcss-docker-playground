@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "dev": "live-server /var/www/public --port=8181 --host=0.0.0.0",
+        "dev": "live-server /var/www/public --port=9000 --host=0.0.0.0",
         "build": "postcss base.css -o public/main.css"
     },
     "keywords": [],
