@@ -7,7 +7,7 @@ Tailwind CSS Docker Playground is a container based playground with live reload 
 ## Features
 
 - Only requires [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) to be installed on the host machine
-- A lightweigh Alpine Linux based [Node.js base image](https://hub.docker.com/_/node/)
+- A lightweigh Alpine Linux based Node.js [base image](https://hub.docker.com/_/node/)
 - Support for [PostCSS CLI](https://www.npmjs.com/package/postcss-cli) processing
 - Support for [PostCSS Autoprefixer](https://www.npmjs.com/package/autoprefixer)
 - Support for [Live Server](https://www.npmjs.com/package/live-server) for super fast live browser reloading
@@ -28,9 +28,6 @@ Tailwind CSS Docker Playground is a container based playground with live reload 
 5) If you return to your browser, you should now see Tailwind CSS styles applied to the welcome screen.
 
 6) Now you can open up the `/src/public/index.html` and make a chance to the default welcome screen. As soon as you save your change, your browser should automatically reload showing the latest changes. If you want to test out any of the @apply or themeing capabilities of Tailwind CSS, you will need to re-run the command from step 4 above to regenerate your `/src/public/main.css` file.
-
-## Contributing
-Thank you for considering contributing to the Tailwind CSS Docker Playground! Please
 
 ## License
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
