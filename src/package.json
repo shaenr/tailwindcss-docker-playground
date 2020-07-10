@@ -7,6 +7,7 @@
     "license": "MIT",
     "scripts": {
         "dev": "live-server /var/www/public --port=9000 --host=0.0.0.0",
+        "watch": "postcss base.css -o public/main.css --watch",
         "build": "postcss base.css -o public/main.css"
     },
     "devDependencies": {
