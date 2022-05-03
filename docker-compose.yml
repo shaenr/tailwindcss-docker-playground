@@ -8,12 +8,6 @@ services:
         ports:
             - '9000:9000'
         volumes:
-            - './src:/var/www'
+            - './app:/var/www'
         working_dir: /var/www
-        command: bash -c "npm install && npm run dev"
-        networks:
-            - web
-
-networks:
-    web:
-        external: true
+        command: bash -c "npm install && npm run build && npm run dev"

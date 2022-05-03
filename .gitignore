@@ -1,7 +1,7 @@
 # Project Specific Files #
 ##########################
-/src/node_modules/
-/src/public/main.css
+/app/node_modules
+/app/public/main.css
 
 # Compiled source #
 ###################
