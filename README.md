@@ -1,33 +1,41 @@
-# Tailwind CSS Docker Playground
+# Tailwind CSS & Django Docker Playground
 
-## About Tailwind CSS Docker Playground
+## What is happening here?
+Please check the `docker-compose-yaml`, `Dockerfile_python` and `Dockerfile_tailwind` file if any changes are needed. Out of the box the docker-compose command will generate an Python environment to serve Django, and an Node environment to auto-generate the necessary (Tailwind) CSS.
 
-Tailwind CSS Docker Playground is a container based playground with live reload for learning Tailwind CSS. Your host machine only needs to have Docker and Docker Compose installed on it to get up and running with the Tailwind CSS Docker Playground.
+## First use
+For first time use (or when you've edited one of the Dockerfiles mentioned above and/or added packages to the `requirements.txt` or `package.json` files) run this command:
+```bash
+docker-compose build
+```
+This will take some time the first time, but will run much faster on consecutive runs
 
-## Features
+## Start up playgroud
+After the initial build you can start the environment with:
 
-- Only requires [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) to be installed on the host machine
-- A lightweigh Alpine Linux based Node.js [base image](https://hub.docker.com/_/node/)
-- Support for [PostCSS CLI](https://www.npmjs.com/package/postcss-cli) processing
-- Support for [PostCSS Autoprefixer](https://www.npmjs.com/package/autoprefixer)
-- Support for [Live Server](https://www.npmjs.com/package/live-server) for super fast live browser reloading
+```bash
+docker-compose up -d
+```
+(`-d` can be ommited if you don't want to run the docker playground in the background)
 
-## Quick Start
+## Check the logs
+If you want to check if everything is running correctly, or see is the css is being build run:
+```bash
+docker-compose logs
+```
+(`-f` can be added to 'follow' the logs. `CTRL-C` will exit this)
 
-1) Make sure you have [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed on your machine.
+## Shutting down
+To stop this docker environment use:
+```bash
+docker-compose down
+```
 
-2) Clone this repo to a folder of your choice.
+## Caveats
+* Since Django automatically reloads on a file change it sometimes cannot recover from a fatal error. In this case the `docker-compose up -d` command needs to be rerun (no need for shutdown first. Docker will detect running instances and act accordingly)
+* Please note: I've used global templates in the Django project. This is not advisable for larger projects or projects with multiple (individually maintained) apps.
 
-3) Run `docker-compose up` to build the Docker image, install the projects node modules, and start the live reloading server. Once this process is complete, you should see a URL ending with port 9000. Open this in your browser. At this time, you should be seeing a raw unstyled welcome page.
+## Please contribute
+I've made this repo to 'scratch my itch' for a simple and fast way to get started on Tailwind. If you have any imporvements, please make an pull request explaining what (and why!) you would like to change something.
 
-4) Open a new tab or terminal window and browse to the Tailwind CSS Docker Playground project root. Run the command below to generate the `/src/public/main.css` file, which imports Tailwind CSS, processes any custom CSS in the `/src/base.css` file, add autoprefixer support, and outputs the `/src/public/main.css`.
-	```
-	docker run -v $(PWD)/src:/var/www -w /var/www node:12.16-alpine npm run build
-	```
-
-5) If you return to your browser, you should now see Tailwind CSS styles applied to the welcome screen.
-
-6) Now you can open up the `/src/public/index.html` and make a chance to the default welcome screen. As soon as you save your change, your browser should automatically reload showing the latest changes. If you want to test out any of the @apply or themeing capabilities of Tailwind CSS, you will need to re-run the command from step 4 above to regenerate your `/src/public/main.css` file.
-
-## License
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Enjoy!
