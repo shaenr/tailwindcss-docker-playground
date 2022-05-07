@@ -18,7 +18,7 @@ docker-compose up -d
 ```
 (`-d` can be ommited if you don't want to run the docker playground in the background)
 
-If you will be using the admin interface you need to create an superuser account.
+If you will be using the admin interface you need to create an superuser account. Run the following command and follow the instructions presented.
 ```bash
 docker exec -it python_django python manage.py createsuperuser
 ```
