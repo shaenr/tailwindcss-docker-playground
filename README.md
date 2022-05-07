@@ -18,6 +18,11 @@ docker-compose up -d
 ```
 (`-d` can be ommited if you don't want to run the docker playground in the background)
 
+If you will be using the admin interface you need to create an superuser account.
+```bash
+docker exec -it python_django python manage.py createsuperuser
+```
+
 ## Check the logs
 If you want to check if everything is running correctly, or see is the css is being build run:
 ```bash
