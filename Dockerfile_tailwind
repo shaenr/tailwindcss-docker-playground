@@ -1,0 +1,15 @@
+FROM node:alpine
+
+RUN apk update && apk add --no-cache bash
+
+RUN npm install -g npm
+RUN npm install -g tailwindcss
+# RUN npm install -g @headlessui/vue @heroicons/vue
+
+WORKDIR /code
+
+COPY ./src/package*.json /code/
+
+RUN npm install
+
+CMD npx tailwindcss -i /code/input.css -o /code/static/main.css --watch

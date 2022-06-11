@@ -1,0 +1,25 @@
+version: "3.3"
+
+services:
+    web:
+        container_name: python_django
+        build:
+            context: ./
+            dockerfile: Dockerfile_python
+        command: bash run_python.sh
+        volumes:
+            - ./src:/code
+        ports:
+            - "8000:8000"
+
+    frontend:
+        container_name: node_tailwind
+        build:
+            context: ./
+            dockerfile: Dockerfile_tailwind
+        command: npx tailwindcss -i /code/input.css -o /code/static/main.css --watch
+        volumes:
+            - ./src:/code:z
+        tty: true # https://github.com/rails/rails/issues/44048
+        depends_on:
+            - web

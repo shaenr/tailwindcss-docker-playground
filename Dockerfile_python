@@ -1,0 +1,26 @@
+FROM python:3
+
+ENV USER=django
+ENV USERID=1000
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV PATH "$PATH:/home/${USER}/.local/bin"
+
+WORKDIR /code
+
+RUN apt update && \
+    apt dist-upgrade -y && \
+    apt autoremove -y && \
+    apt install -y bash && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN addgroup --gid ${USERID} ${USER}
+RUN adduser --system --group ${USER} --uid ${USERID}
+RUN chown -R ${USER}:${USER} /code && chmod -R 755 /code
+USER ${USER}
+
+ADD ./src/requirements.txt /code/
+
+RUN pip install -r requirements.txt
